@@ -1,3 +1,4 @@
+import sequelize from "../db"
 import ApiError from "../error/ApiError"
 import { Game } from "../models/models"
 import { Request, Response, NextFunction } from 'express'
@@ -20,12 +21,13 @@ class gameController{
             const { id } = req.params
             const { move } = req.body
             const game: any = await Game.findOne({where:{id}})
-            game?.moves.push(move)
+            game.moves = [...game.moves, move]
+            await game.save()
+
             return res.json(game)
         } catch (e: any) {
             next(ApiError.badRequest(e.message))
         }
-        
     }
     async delete(req: Request, res: Response, next: NextFunction){
         try {
