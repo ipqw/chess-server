@@ -5,8 +5,11 @@ import { Request, Response, NextFunction } from 'express'
 class gameController{
     async create(req: Request, res: Response, next: NextFunction){
         try {
-            const { name, ownerColor } = req.body
-            const game = await Game.create({name, ownerColor: ownerColor || Boolean(Math.floor(Math.random() * 2))})
+            let { name, ownerColor } = req.body
+            if(ownerColor === null){
+                ownerColor = Boolean(Math.floor(Math.random() * 2))
+            }
+            const game = await Game.create({name, ownerColor})
             return res.json(game)
         } catch (e: any) {
             next(ApiError.badRequest(e.message))
@@ -40,15 +43,23 @@ class gameController{
     }
     async join(req: Request, res: Response, next: NextFunction){
         try {
-            const { id } = req.body
+            const { id, ip } = req.body
             const game: any = await Game.findOne({where: {id}})
-            if(game.counter < 2){
-                game.counter = 2
+            let isUserExists: boolean = false
+            game.members.map((el: any) => {
+                el == ip ? isUserExists = true : ''
+            })
+            if(isUserExists){
+                return res.json(game)
+            }
+            if(game.counter <= 2 && !isUserExists){
+                game.counter++
+                game.members = [...game.members, ip]
                 await game.save()
                 return res.json(game)
             }
             else{
-                return res.json({message: 'This game is full'})
+                return res.status(400).json({message: 'This game is full'})
             }
         } catch (e: any) {
             next(ApiError.badRequest(e.message))
