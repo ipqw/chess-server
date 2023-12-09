@@ -52,15 +52,14 @@ class gameController{
             if(isUserExists){
                 return res.json(game)
             }
-            if(game.counter <= 2 && !isUserExists){
+            if(game.counter < 2){
                 game.counter++
                 game.members = [...game.members, ip]
                 await game.save()
                 return res.json(game)
             }
-            else{
-                return res.status(400).json({message: 'This game is full'})
-            }
+            return res.status(400).json({message: 'This game is full'})
+            
         } catch (e: any) {
             next(ApiError.badRequest(e.message))
         }
