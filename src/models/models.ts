@@ -1,5 +1,5 @@
 import sequelize from '../db'
-import {BOOLEAN, DataTypes} from 'sequelize'
+import {DataTypes} from 'sequelize'
 
 export const Game = sequelize.define('game', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
@@ -7,5 +7,6 @@ export const Game = sequelize.define('game', {
     moves: {type: DataTypes.ARRAY(DataTypes.STRING), defaultValue: []},
     counter: {type: DataTypes.INTEGER, defaultValue: 0},
     ownerColor: {type: DataTypes.BOOLEAN, defaultValue: false},
-    members: {type: DataTypes.ARRAY(DataTypes.STRING), defaultValue: []}
+    members: {type: DataTypes.ARRAY(DataTypes.STRING), defaultValue: []},
+    winner: {type: DataTypes.STRING, allowNull: true}
 })

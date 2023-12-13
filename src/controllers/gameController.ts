@@ -67,10 +67,13 @@ class gameController{
     async doMove(req: Request, res: Response, next: NextFunction){
         try {
             const { id } = req.params
-            const { move } = req.body
+            const { move, winner } = req.body
             const game: any = await Game.findOne({where:{id}})
             if(game.counter === 2){
                 game.moves = [...game.moves, move]
+                if(winner !== null){
+                    game.winner = winner
+                }
                 await game.save()
                 return res.json(game)
             }
