@@ -1,4 +1,3 @@
-import sequelize from "../db"
 import ApiError from "../error/ApiError"
 import { Game } from "../models/models"
 import { Request, Response, NextFunction } from 'express'
