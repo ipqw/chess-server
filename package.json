@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node public/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "esbuild src/index.ts --platform=node --bundle --minify --outfile=dist/index.js"
+    "build": "esbuild src/index.ts --platform=node --bundle --minify --outfile=public/index.js"
   },
   "keywords": [],
   "author": "",
