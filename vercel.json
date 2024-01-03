@@ -1,6 +1,6 @@
 {
     "buildCommand": "pnpm build",
-    "installCommand": "pnpm install",
+    "installCommand": "pnpm install && pnpm install -g pg --save",
     "version": 2,
     "builds": [
         {

@@ -1,10 +1,7 @@
 import { Sequelize } from 'sequelize'
-import * as pg from 'pg';
+import pg from 'pg';
 
-const sequelize = new Sequelize(
-    process.env.DB_NAME || 'chess',
-    process.env.DB_USER || 'postgres',
-    process.env.DB_PASSWORD,
+const sequelize = new Sequelize('postgres://bpglqpfg:1YTzhh6LudujpW1xSICDJi_B98Hn2x8_@mel.db.elephantsql.com/bpglqpfg',
     {
         dialect: 'postgres',
         dialectModule: pg,
