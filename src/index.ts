@@ -4,7 +4,6 @@ import express from 'express'
 import {Request, Response} from 'express'
 import sequelize from './db'
 import router from './routes/index'
-import pg from 'pg';
 import ErrorMiddleware from './middleware/ErrorMiddleware'
 
 const PORT = process.env.PORT || 5000
