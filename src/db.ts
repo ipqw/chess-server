@@ -1,10 +1,9 @@
 import { Sequelize } from 'sequelize'
-import pg from 'pg';
 
 const sequelize = new Sequelize('postgres://bpglqpfg:1YTzhh6LudujpW1xSICDJi_B98Hn2x8_@mel.db.elephantsql.com/bpglqpfg',
     {
         dialect: 'postgres',
-        dialectModule: pg,
+        dialectModule: require('pg'),
         host: process.env.DB_HOST,
         port: Number(process.env.DB_PORT),
     }
