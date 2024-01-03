@@ -1,14 +1,15 @@
 import { Sequelize } from 'sequelize'
+import * as pg from 'pg';
 
-// const sequelize = new Sequelize(
-//     process.env.DB_NAME || 'chess',
-//     process.env.DB_USER || 'postgres',
-//     process.env.DB_PASSWORD,
-//     {
-//         dialect: 'postgres',
-//         host: process.env.DB_HOST,
-//         port: Number(process.env.DB_PORT),
-//     }
-// )
-const sequelize = new Sequelize('postgres://bpglqpfg:1YTzhh6LudujpW1xSICDJi_B98Hn2x8_@mel.db.elephantsql.com/bpglqpfg')
+const sequelize = new Sequelize(
+    process.env.DB_NAME || 'chess',
+    process.env.DB_USER || 'postgres',
+    process.env.DB_PASSWORD,
+    {
+        dialect: 'postgres',
+        dialectModule: pg,
+        host: process.env.DB_HOST,
+        port: Number(process.env.DB_PORT),
+    }
+)
 export default sequelize
