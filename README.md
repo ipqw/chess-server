@@ -10,6 +10,8 @@
  - **ExpressJS**
  - **Sequelize**
  - **PostgreSQL**
+ - **TypeScript**
+ - **ESBuild**
 
 ## Запуск сервера для разработчиков
 ```
